@@ -1,28 +1,36 @@
 <?php
 
 
-$string = "my name is ramtin";
+$name = "akbar";
 
-$string2 = 'سلام چطوری';
+$family = 'رحمانی';
 
-$int = 1373;
+$age = 30;
 
-$intType2 = -12000;
+$accountBalance = 2000.500;
 
-$floatType = 30.12;
+$debt = -40000;
 
-$array = [
-    'akbar', 'rahmani', 1373, 200.300
+$myInformation = [
+    'akbar', 'رحمانی', 30, 2000.500, -40000
 ];
 
 
-var_dump($string);
-var_dump($string2);
-var_dump($int);
-var_dump($intType2);
-var_dump($floatType);
-var_dump($array);
+$myInformationWhitKey = [
+    'name' => 'akbar', 'family' => 'رحمانی', 'age' => 30, 'balance' => 2000.500, 'debt' => -40000
+];
 
+
+var_dump($name);
+var_dump($family);
+var_dump($age);
+var_dump($accountBalance);
+var_dump($debt);
+var_dump($myInformation);
+var_dump($myInformationWhitKey);
+
+
+echo "<br>";
 echo "php types";
 echo "<br>";
 echo 'end';

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e9ecef;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 300px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        #display {
+            max-width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #333;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #dee2e6;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #ced4da;
+        }
+
+        button:active {
+            background-color: #adb5bd;
+        }
+
+        .operation-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .operation-button {
+            flex: 1;
+            background-color: #8ed589;
+            color: #ffffff;
+        }
+
+        .operation-button:hover {
+            background-color: #67ec5d;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: #ffffff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" placeholder="0" readonly>
+    <input type="hidden" id="num1">
+    <input type="hidden" id="num2">
+    <input type="hidden" id="operation">
+
+    <div class="buttons-container">
+        <!-- Number Buttons 0-9 and Clear -->
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="appendNumber(0)" style="grid-column: span 2;">0</button>
+        <button onclick="clearDisplay()">C</button>
+    </div>
+
+    <div class="operation-buttons">
+        <!-- Operation Buttons -->
+        <button class="operation-button" onclick="setOperation('+')">+</button>
+        <button class="operation-button" onclick="setOperation('-')">−</button>
+        <button class="operation-button" onclick="setOperation('*')">×</button>
+        <button class="operation-button" onclick="setOperation('/')">÷</button>
+        <button class="operation-button" onclick="calculate()">=</button>
+    </div>
+
+    <div id="result">Result: </div>
+</div>
+
+<script>
+    let num1 = "";
+    let num2 = "";
+    let operation = null;
+    let isSecondNumber = false;
+
+    function appendNumber(number) {
+        const display = document.getElementById("display");
+        if (isSecondNumber) {
+            num2 += number;
+            display.value = num2;
+        } else {
+            num1 += number;
+            display.value = num1;
+        }
+    }
+
+    function setOperation(op) {
+        if (num1) {
+            operation = op;
+            isSecondNumber = true;
+            document.getElementById("display").value = "";
+        }
+    }
+
+    function calculate() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "calculate.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("result").innerText = "Result: " + xhr.responseText;
+                document.getElementById("display").value = xhr.responseText;
+                clearValues();
+            }
+        };
+
+        xhr.send("num1=" + num1 + "&num2=" + num2 + "&operation=" + operation);
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+        document.getElementById("result").innerText = "Result: ";
+        clearValues();
+    }
+
+    function clearValues() {
+        num1 = "";
+        num2 = "";
+        operation = null;
+        isSecondNumber = false;
+    }
+</script>
+
+</body>
+</html>

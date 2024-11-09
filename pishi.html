@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گربه</title>
+    <title>گربه زیباتر</title>
     <style>
         body {
             display: flex;
@@ -11,97 +11,131 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #f0f8ff;
         }
         .cat {
             position: relative;
-            width: 100px;
-            height: 100px;
-            background-color: #ccc;
+            width: 120px;
+            height: 120px;
+            background-color: #d3a87c;
             border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .cat::before, .cat::after {
-            content: '';
+        /* گوش‌ها */
+        .ear {
             position: absolute;
             top: -20px;
-            width: 30px;
-            height: 30px;
-            background-color: #ccc;
+            width: 50px;
+            height: 50px;
+            background-color: #d3a87c;
             border-radius: 50%;
+            transform: rotate(45deg);
+            box-shadow: -5px -5px 0 #d3a87c;
         }
-        .cat::before {
+        .ear.left {
             left: -20px;
+        }
+        .ear.right {
+            right: -20px;
             transform: rotate(-45deg);
         }
-        .cat::after {
-            right: -20px;
-            transform: rotate(45deg);
-        }
+        /* چشم‌ها */
         .eyes {
             position: absolute;
-            top: 30px;
-            left: 10px;
+            top: 40px;
+            left: 15px;
             display: flex;
-            gap: 20px;
+            gap: 30px;
         }
         .eye {
-            width: 15px;
-            height: 15px;
+            width: 18px;
+            height: 18px;
             background-color: #000;
             border-radius: 50%;
         }
+        /* بینی */
         .nose {
             position: absolute;
-            top: 60px;
-            left: 40px;
-            width: 20px;
+            top: 70px;
+            left: 50px;
+            width: 15px;
             height: 15px;
-            background-color: pink;
+            background-color: #ffb6b6;
             border-radius: 50%;
         }
+        /* دهان */
         .mouth {
             position: absolute;
-            top: 75px;
-            left: 40px;
-            width: 20px;
+            top: 85px;
+            left: 45px;
+            width: 30px;
             height: 20px;
-            border: 3px solid transparent;
-            border-top: 0;
-            border-radius: 50%;
-            border-color: #000;
-            border-top-color: transparent;
+            border-bottom: 3px solid #000;
+            border-radius: 0 0 50% 50%;
         }
+        /* سبیل‌ها */
         .whiskers {
             position: absolute;
-            top: 60px;
-            width: 100px;
+            top: 75px;
+            left: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        .whisker {
+            width: 50px;
             height: 1px;
             background-color: #000;
+            position: relative;
         }
-        .whiskers::before, .whiskers::after {
-            content: '';
+        .whisker.left {
+            transform: rotate(-15deg);
+            left: -10px;
+        }
+        .whisker.right {
+            transform: rotate(15deg);
+            right: -10px;
+        }
+        /* بدن */
+        .body {
             position: absolute;
-            width: 100px;
-            height: 1px;
-            background-color: #000;
+            top: 100px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background-color: #d3a87c;
+            border-radius: 50% 50% 70% 70%;
+            z-index: -1;
         }
-        .whiskers::before {
-            top: -10px;
-        }
-        .whiskers::after {
-            top: 10px;
+        /* دم */
+        .tail {
+            position: absolute;
+            top: 120px;
+            right: -30px;
+            width: 20px;
+            height: 80px;
+            background-color: #d3a87c;
+            border-radius: 50%;
+            transform: rotate(30deg);
+            z-index: -2;
         }
     </style>
 </head>
 <body>
 <div class="cat">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
     <div class="eyes">
         <div class="eye"></div>
         <div class="eye"></div>
     </div>
     <div class="nose"></div>
     <div class="mouth"></div>
-    <div class="whiskers"></div>
+    <div class="whiskers">
+        <div class="whisker left"></div>
+        <div class="whisker right"></div>
+    </div>
+    <div class="body"></div>
+    <div class="tail"></div>
 </div>
 </body>
 </html>

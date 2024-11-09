@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گربه</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .cat {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            border-radius: 50%;
+        }
+        .cat::before, .cat::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 50%;
+        }
+        .cat::before {
+            left: -20px;
+            transform: rotate(-45deg);
+        }
+        .cat::after {
+            right: -20px;
+            transform: rotate(45deg);
+        }
+        .eyes {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            display: flex;
+            gap: 20px;
+        }
+        .eye {
+            width: 15px;
+            height: 15px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+        .nose {
+            position: absolute;
+            top: 60px;
+            left: 40px;
+            width: 20px;
+            height: 15px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        .mouth {
+            position: absolute;
+            top: 75px;
+            left: 40px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid transparent;
+            border-top: 0;
+            border-radius: 50%;
+            border-color: #000;
+            border-top-color: transparent;
+        }
+        .whiskers {
+            position: absolute;
+            top: 60px;
+            width: 100px;
+            height: 1px;
+            background-color: #000;
+        }
+        .whiskers::before, .whiskers::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 1px;
+            background-color: #000;
+        }
+        .whiskers::before {
+            top: -10px;
+        }
+        .whiskers::after {
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="cat">
+    <div class="eyes">
+        <div class="eye"></div>
+        <div class="eye"></div>
+    </div>
+    <div class="nose"></div>
+    <div class="mouth"></div>
+    <div class="whiskers"></div>
+</div>
+</body>
+</html>
